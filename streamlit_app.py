@@ -20,7 +20,7 @@ streamlit.dataframe(fruits_to_show)
 #Let's Call the Fruityvice API from Our Streamlit App!
 
 #New Section to display fruityvice api response
-streamlit.header('Fruityvice Fruit Advice!'
-import request
+streamlit.header('Fruityvice Fruit Advice!')
+import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 stremlit.text(fruityvice_response.json())
