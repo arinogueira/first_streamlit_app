@@ -22,10 +22,11 @@ streamlit.dataframe(fruits_to_show)
 #New Section to display fruityvice api response
 streamlit.header('Fruityvice Fruit Advice!')
 import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-streamlit.text(fruityvice_response.json())
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "Kiwi")
+# streamlit.text(fruityvice_response.json()) # just writes the data to screen - "deleted" as per exercice line 32 below
 
 # take the json version of the response and normalize it
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # output it the screen as a table
 streamlit.dataframe(fruityvice_normalized)
+# Let's removed the line of raw JSON, and separate the base URL from the fruit name (which will make it easier to use a variable there).
