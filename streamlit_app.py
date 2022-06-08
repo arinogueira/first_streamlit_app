@@ -33,5 +33,3 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
 # Let's removed the line of raw JSON, and separate the base URL from the fruit name (which will make it easier to use a variable there).
 #Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
-
-
