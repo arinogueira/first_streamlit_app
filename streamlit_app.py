@@ -43,10 +43,9 @@ try:
       back_from_function = get_fruityvice_data(fruit_choice)
       # output it the screen as a table
       streamlit.dataframe(back_from_function)
-      
 except URLError as e:
     streamlit.error()
-        
+       
 # Let's removed the line of raw JSON, and separate the base URL from the fruit name (which will make it easier to use a variable there).
 #Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
 
@@ -55,12 +54,20 @@ streamlit.stop()
 
 
 
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur. execute("SELECT * from fruit_load_list")
-my_data_rows = my_cur.fetchall()
+
+
 streamlit.header ("The Fruit load list contains:")
-streamlit.dataframe (my_data_rows)
+#Snowflake-related fucntions
+def get_fruit_load_list():
+  with my_cur = my_cnx.cursor() as my_cur:
+       my_cur. execute("SELECT * from fruit_load_list")
+       return my_cur.fetchall()
+ #add a button to laod the fruit
+if streamlit.button('Get Fruit Load List'):
+  my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+  my_data_rows = get_fruit_load_list()  
+  streamlit.dataframe (my_data_rows)
+  
 #New Section to display fruityvice api response
 add_my_fruit = streamlit.text_input('What fruit would you like to add?')
 streamlit.write('Thanks for adding', add_my_fruit)
