@@ -34,6 +34,9 @@ streamlit.dataframe(fruityvice_normalized)
 # Let's removed the line of raw JSON, and separate the base URL from the fruit name (which will make it easier to use a variable there).
 #Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
 
+#don't run anything past here while we troubleshoot
+streamlit.stop()
+
 import snowflake.connector
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
