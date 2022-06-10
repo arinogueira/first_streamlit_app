@@ -49,7 +49,7 @@ except URLError as e:
 # Let's removed the line of raw JSON, and separate the base URL from the fruit name (which will make it easier to use a variable there).
 #Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
 
-streamlit.header ("The Fruit load list contains:")
+streamlit.header ("View Our Fruit List - Add your Favorites!")
 #Snowflake-related fucntions
 def get_fruit_load_list():
   with my_cnx.cursor() as my_cur:
@@ -59,6 +59,8 @@ def get_fruit_load_list():
 if streamlit.button('Get Fruit Load List'):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   my_data_rows = get_fruit_load_list()  
+#don't run anything past here while we troubleshoot
+streamlit.stop()
   streamlit.dataframe (my_data_rows)
 
 #Allow user to add a fruit to the list. 
@@ -74,5 +76,3 @@ if streamlit.button('Add a Fruit to the List'):
   streamlit.write(back_from_function)
 
 
-#don't run anything past here while we troubleshoot
-streamlit.stop()
